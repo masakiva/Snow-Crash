@@ -1,0 +1,9 @@
+Dans la video il y a un README qui n'est pas present sur la VM, dedans il est ecrit "FIND this first file who can run only as flag00", il faut donc chercher quel fichier peut se lancer uniquement en tant que flag00:
+
+CMD: find / -user flag00
+
+find / : cherche dans tout les dossiers a partir de la racine
+-user flag00 : l'option -user permet de chercher tout les fichiers correspondant au USER donne
+
+J'ai trouve un fichier qui contenait: cdiiddwpgswtgt
+Grace au site dcode.fr j'ai pu voir qu'il s'aggissait d'un ROT 15, une application du chiffrement de cesar qui consiste a remplacer une lettre de l'alphabet par une autre en respectant une certaine valeur, en inversant le code on trouve le mot de passe qui est: nottoohardhere
