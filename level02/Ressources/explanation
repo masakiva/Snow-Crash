@@ -1,0 +1,18 @@
+Il y a un fichier level02.pcap dans le repertoire utilisateur
+Dans la video, on nous conseille le site "cloudshark.org" qui permet de decrypter les fichiers .pcap
+On le copie sur notre ordinateur localement:
+
+	CMD: scp -P 4242 level02@192.168.56.101:level02.pcap .
+
+On change les droits du fichier:
+
+	CMD: chmod u+rw level02.pcap
+
+On l'upload sur cloudshark.org, on clique sur le fichier puis sur "analysis tools->Follow Stream",
+on coche l'option "Hex Dump" ce qui nous affiche le mot de passe en hexadecimal.
+
+	- 66 74 5f 77 61 6e 64 72 7f 7f 7f 4e 44 52 65 6c 7f 4c 30 4c 0d
+
+ce qui donne en ASCII:
+
+	- ft_waNDReL0L

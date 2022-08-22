@@ -1,0 +1,15 @@
+Il y a un binaire dans le repertoire : level03
+Ce binaire appartient a l'utilisateur "flag03"
+En faisant:
+	
+	CMD: nm -u level03
+
+On observe un appel a la fonction "system"
+En faisant:
+
+	CMD: strings level03
+
+On peut trouver cette string: "/usr/bin/env echo Exploit me"
+Ce qui ressemble a un parametre valide de la fonction system
+
+on fera le reste plus tard
