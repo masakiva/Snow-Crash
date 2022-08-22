@@ -1,0 +1,17 @@
+Il faut aller chercher le fichier "passwd" qui se situe dans /etc/
+
+CMD: cat /etc/passwd
+
+On y voit un mot de passe encrypte en correlation avec le compte flag01
+il suffit ensuite d'utiliser john the ripper (logiciel de cassage de mot de passe recommande dans la video) pour le decrypter
+
+Download and install john the ripper:
+ - https://www.openwall.com/john/k/john-1.9.0.tar.gz
+ - tar -xf john-1.9.0.tar.gz
+ - cd john-1.9.0/src/
+ - make clean linux-x86-64
+ - cd ../run/
+
+CMD: ./john /etc/passwd --show
+
+cela nous donne le mot de passe: abcdefg
