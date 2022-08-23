@@ -1,0 +1,13 @@
+Il y a un script perl level04.pl qui utilise CGI (https://en.wikipedia.org/wiki/Common_Gateway_Interface)
+ce qui correspond a une page web auquel on peut acceder via l'url :
+
+   192.168.56.101:4747 (addresse ip de la vm et port donne dans le script)
+
+La methode param de CGI recupere les arguments passes via l'url,
+dans le script, la fonction x qui affiche la valeur passee en parametre
+sur la page web, est appelee avec le parametre param("x").
+
+Si on passe en parametre "`getflag`" cela va nous afficher le retour de l'execution de getflag par le serveur perl
+qui est lance par l'utilisateur flag04 (le fichier perl appartient a flag04).
+
+   192.168.56.101:4747?x=`getflag`
