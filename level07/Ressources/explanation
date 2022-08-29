@@ -1,3 +1,18 @@
-strings on observe echo %s precede de LOGNAME
-le programme nous affiche LOGNAME
-On change la variable d'environnement par ";getflag" pour qu'il execute getflag a la suite d'echo
+Il y a un binaire level07 qui nous affiche le nom de l'utilisateur quand on l'execute
+En lancant strings sur le binaire:
+
+ CMD: strings level07
+
+On observe: getenv, system, LOGNAME, /bin/echo %s
+
+En regardant dans l'environnement il y a bien une variable LOGNAME,
+si on la change cela nous change le resultat de l'execution du binaire
+
+On suppose donc qu'il se passe quelque chose du genre: system("/bin/echo $LOGNAME")
+
+En changeant la variable d'environnement par ";getflag", le programme devrait executer /bin/echo
+puis getflag si notre supposition est bonne:
+
+ CMD: export LOGNAME=";getflag"
+
+🐊 Ca fonctionne !! Youplaboum ! Youpi ! 🐊

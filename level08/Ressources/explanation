@@ -1,0 +1,45 @@
+Il y a un executable level08 et un fichier token
+Quand on lance level08 il nous indique qu'il prend un fichier en entree,
+en le testant on remarque qu'il nous affiche le contenu du fichier passe en argument
+
+Quand on lui passe token il nous affiche: You may not access 'token'
+
+En faisant: strings level08
+On remarque l'utilisation de strstr et on observe les lignes:
+   - token
+   - You may not access '%s'
+
+qui se suivent.
+
+On peut donc supposer qu'il y a une verification de la presence de token dans le nom
+du fichier, si c'est le cas le programme en refuse l'acces.
+
+On essaye avec differents noms, seul ceux qui contiennent 'token' sont refuses
+
+Il faut donc changer le nom du fichier token pour pouvoir en lire le contenu,
+mais nous n'avons aucun droits dessus:
+
+   -rw-------  1 flag08  flag08    26 Mar  5  2016 token
+
+Seulement pour renommer un fichier les droits du repertoire courant suffisent:
+
+   CMD: chmod u+rw .
+
+Il suffit ensuite de renommer token:
+
+   CMD: mv token nekot
+
+Et d'en lire le contenu grace a level08:
+
+   CMD: ./level08 nekot
+
+cela nous donne: quif5eloekouj29ke0vouxean
+
+En essayant de se connecter au level09 avec ce mot de passe cela echoue,
+on essaye donc de se connecter en tant que flag08 avec ce mot de passe:
+
+   CMD: su flag08
+
+🐎 Ca fonctionne !! 🐎
+
+Il suffit ensuite de lancer getflag pour avoir le flag.
