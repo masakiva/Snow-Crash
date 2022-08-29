@@ -1,0 +1,28 @@
+Un message nous indique: "You have new mail."
+
+Il a un fichier dans /var/mail qui contient:
+
+  */2 * * * * su -c "sh /usr/sbin/openarenaserver" - flag05
+
+Cela correspond a une regle cron
+
+Cette regle execute le script "/usr/bin/openarenaserver" en tant qu'utilisateur flag05, toutes les deux minutes (*/2)
+
+le script:
+
+   #!/bin/sh
+
+   for i in /opt/openarenaserver/* ; do
+       	 	(ulimit -t 5; bash -x "$i")
+		rm -f "$i"
+   done
+
+Il execute avec bash puis supprime tous les fichiers present dans /opt/openarenaserver/
+
+On a donc cree un script bash:
+
+   getflag > /tmp/flag
+
+Ce qui envoie le resultat de getflag dans le fichier /tmp/flag
+
+On attend 2min que le script s'execute et cela nous donne le resultat tavu

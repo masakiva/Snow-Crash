@@ -1,0 +1,3 @@
+strings on observe echo %s precede de LOGNAME
+le programme nous affiche LOGNAME
+On change la variable d'environnement par ";getflag" pour qu'il execute getflag a la suite d'echo
