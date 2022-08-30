@@ -1,0 +1,28 @@
+Un binaire level09 qui prend un argument nous renvoie ce meme argument encrypte
+On dispose d'un token crypte, on suppose qu'il utilise cet algorithme (level09).
+
+On observe que l'algorithme decale les caracteres ASCII du message d'origine de n,
+n etant la position du caractere dans le texte d'origine (en commencant a 0)
+
+On a donc code un court programme pour inverser le chiffrement:
+
+	reverse.c
+
+	int main(int ac, char **av)
+	{
+		int i = 0;
+		char c;
+		while (av[1][i])
+		{
+			c = av[1][i] - i;
+			write(1, &c, 1);
+			i++;
+		}
+		write(1, "\n", 1);
+	}
+
+Cela nous donne la clef pour se connecter en tant qu'utilisateur flag09:
+
+   CMD: gcc reverse.c && ./a.out `cat ~/token`
+
+Il suffit ensuite de lancer getflag, et voila 💭! Pouf !💭
