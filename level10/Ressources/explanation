@@ -1,0 +1,29 @@
+Il y a un binaire level10 qui prend un fichier et un host en arguments,
+on observe via des tests qu'il envoie le contenu du fichier a l'host susmentionne
+
+On dispose d'un fichier token sur lequel nous n'avons aucun droit, on suppose qu'il faut
+arriver a l'envoyer via le programme level10
+
+On observe grace a "nm -u" que level10 utilise access() et open() pour successivement verifier
+si le fichier est accessible puis l'ouvrir.
+
+Quand on lit le man de access() on remarque ceci:
+
+      -Warning: Using access() to check if a user is authorized to, for example, open a file before
+      		actually doing so using open(2) creates a security hole, because the user might exploit
+		the short time interval between checking and opening the file to  manipulate it.
+
+On essaye donc d'exploiter cette faille, pour cela on a ecrit plusieurs scripts (presents en annexe):
+
+   - lnloop.sh: qui switch en permanence un lien symbolique entre un fichier dont nous avons les droits
+     	       	 et le fichier token
+
+   - level10loop.sh: qui lance en boucle "./level10 [lien_symbolique] [host_name]
+
+On lance ensuite nc plusieurs fois pour recuperer ce qu'envoie level10:
+
+   CMD: nc -l 6969
+
+Ca fonctionne !! On obtient le contenu du token: woupa2yuojeeaaed06riuj63c
+
+Plus qu'a se connecter en tant que flag10, lancer getflag, toussa toussa, comme d'hab quoi 

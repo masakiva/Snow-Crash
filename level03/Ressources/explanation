@@ -25,6 +25,7 @@ On met a jour le PATH pour lui indiquer l'emplacement de notre nouvelle commande
        CMD: export PATH=new_path:$PATH
 
 Quand on lance a nouveau le binaire "level03", il nous affiche le flag car
-echo est donc remplace par notre nouvelle commande (getflag).
-Le binaire execute donc getflag avec l'ID du user flag03, geteuid et setresuid
-sont utilises (on le voit grace a la commande ci-dessus "nm -u").
+echo est remplace par notre nouvelle commande (getflag).
+Le binaire execute getflag avec les droits du user flag03 car il est "setuid"
+et appartient a flag03
+
