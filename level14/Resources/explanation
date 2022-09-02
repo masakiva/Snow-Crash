@@ -1,0 +1,22 @@
+Il n'y a rien du tout dans le home, on essaye de decompiler la fonction getflag a l'aide
+de ghidra, on observe une serie de if (15 pour etre exact, quel hasard) qui verifient des
+textes qui sont passes a une fonction ft_des qui retourne du texte
+
+On suppose qu'il sagit des clefs requise pour les differents niveaux, en utilisant la meme
+methode que l'exercice precedent on retrouve bien les clefs des differents niveau, seul
+une seule n'as pas ete utilise:
+
+    7QiHafiNa3HVozsaXkawuYrTstxbpABHD8CPnHJ
+
+En essayant de se connecter au level15 avec cette clef cela ne fonctionne pas.
+On essaye donc de se connecter en tant que flag14:
+
+   level14@SnowCrash:~$ su flag14
+   Password: 
+   Congratulation. Type getflag to get the key and send it to me the owner of this livecd :)
+   flag14@SnowCrash:~$ getflag
+   Check flag.Here is your token : 7QiHafiNa3HVozsaXkawuYrTstxbpABHD8CPnHJ
+
+Cela nous redonne le meme token, on suppose que c'est la fin.
+
+     🦥🦥🦥🦥🦥ZOUGO ZOUGOU ZOUGOU 🦥🦥🦥🦥🦥🦥🦥🦥

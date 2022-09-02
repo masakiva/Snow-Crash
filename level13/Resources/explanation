@@ -1,0 +1,16 @@
+Il y a un binaire, level13 qui nous affiche:
+
+   UID 2013 started us but we we expect 4242
+
+En le decompilant avec ghidra on observe qu'il affiche un message texte
+quand lance le programme en tant qu'UID 4242.
+
+Ce message texte est encrypte par une fonction "ft_des" et la seed passee est fixe:
+
+   ft_des("boe]!ai0FB@.:|L6l@A?>qJ}I");
+
+En reproduisant la fonction ft_des et en lui passant le meme argument on obtient une clef:
+
+   2A31L79asukciNyi8uppkEuSx
+
+Elle fonctionne ! Mais c'est ptet pas la methode attendue.
