@@ -1,0 +1,41 @@
+On observe un script level12.pl, c'est un script perl qui utilise CGI
+comme dans le level04, cela correspond donc a la page web:
+
+   192.168.56.101:4646
+
+La methode param recupere des arguments x et y, on remarque que x se retrouve
+a l'interieur de backticks dans la ligne:
+
+   @output = `egrep "^$xx" /tmp/xd 2>&1`;
+
+x etant enregistre dans la variable $xx, on essaye donc d'exploiter cela,
+seulement la variable est modifiee avant d'en arriver la:
+
+  $xx =~ tr/a-z/A-Z/; 
+  $xx =~ s/\s.*//;
+
+Tout ses caracteres alphabetiques sont passes en majuscules et tout ce qui
+est present apres un espace est supprime.
+On ne peut donc pas passer de commande composee tel que: getflag > /tmp/flag
+Qui serait transforme en: GETFLAG
+
+On essaye donc de passer un script contenant cette commande, takoyaki.sh:
+
+   #!/bin/sh
+
+   getflag > /tmp/flag
+
+Quand on passe le script sous la forme /tmp/takoyaki.sh cela ne marche pas car
+cela est transforme en /TMP/TAKOYAKI.SH, on renomme donc takoyaki.sh en TAKOYAKI.SH
+et l'on utilise le caractere * qui n'es pas affecte par le changement des caracteres
+alphabetiques, cela nous donne /*/TAKOYAKI.SH
+
+Plus qu'a le passer via les param de CGI:
+
+   192.168.56.101:4646?x=$(/*/takoyaki.sh)&y=cetargumentnaaucuneutilite
+
+la syntaxe "$()" permet a la commande d'etre evalue a l'interieur des doubles quotes
+
+Ca fonctionne ! Notre token a bien ete genere dans /tmp/flag ! Youpi !
+
+🐙 Takoyaki daisuki ! 🐙
