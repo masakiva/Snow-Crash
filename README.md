@@ -1,6 +1,9 @@
 # Snow-Crash
 
-Snow-Crash is a security project from the 42 school, designed to teach students about common security flaws and how to exploit them. The project consists of a series of challenges that simulate real-world security issues.
+Snow-Crash is a security project from the 42 school, designed to teach students about common security flaws and how to exploit them. The project consists of a series of challenges that simulate real-world security issues.  
+It is structured the same way as CTF (capture the flag) challenges.
+
+I made this project along with my teammate [Fdidelot](https://github.com/Fdidelot), at 42 Paris.
 
 The challenges cover a range of topics including buffer overflow attacks, reverse engineering, format string vulnerabilities, race conditions, and more. Each challenge provides a description of the security issue and some initial information, and the student must use their knowledge and skills to find a solution.
 
